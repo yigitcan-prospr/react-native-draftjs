@@ -3,7 +3,7 @@ import { ViewPropTypes, Platform } from "react-native";
 import WebView from "react-native-webview";
 import PropTypes from "prop-types";
 
-const draftJsHtml = require("./draftjs-html-source/draftjs-source.html");
+import draftJsHtml from "./draftjs-html-source/draftjs-source.js";
 
 class RNDraftView extends Component {
   static propTypes = {
@@ -109,11 +109,7 @@ class RNDraftView extends Component {
       <WebView
         ref={this._webViewRef}
         style={style}
-        source={
-          Platform.OS === "ios"
-            ? draftJsHtml
-            : { uri: "file:///android_asset/draftjs-source.html" }
-        }
+        source={{ html: draftJsHtml }}
         useWebKit={true}
         keyboardDisplayRequiresUserAction={false}
         originWhitelist={["*"]}
